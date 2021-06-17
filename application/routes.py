@@ -23,6 +23,7 @@ def home():
     for i in range(3, len(newCasesByPublishDateChange)-3):
         seven_day_averages.append(sum(newCasesByPublishDateChange[i-3:i+4])/7)
         averages_dates.append(dates[i])
+    averages_dates[1:49] = ['' for j in range(1,49)]
     index = np.arange(len(seven_day_averages)) + 0.3
     plot = plt.bar(index, seven_day_averages, tick_label = averages_dates)
     plt.savefig(f"/static/output_graph{date.today()}.png")
