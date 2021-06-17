@@ -14,12 +14,14 @@ def home():
     for entry in resp_json['body']:
         dates.append(entry['date'])
         newCasesByPublishDateChange.append(entry['newCasesByPublishDateChange'])
+    dates[56:] = []
+    newCasesByPublishDateChange[56:] = []
     dates.reverse()
     newCasesByPublishDateChange.reverse()
     seven_day_averages = []
     averages_dates = []
-    for i in range(6, len(newCasesByPublishDateChange)):
-        seven_day_averages.append(sum(newCasesByPublishDateChange[i-6:i+1])/7)
+    for i in range(3, len(newCasesByPublishDateChange)-3):
+        seven_day_averages.append(sum(newCasesByPublishDateChange[i-3:i+4])/7)
         averages_dates.append(dates[i])
     index = np.arange(len(seven_day_averages)) + 0.3
     plot = plt.bar(index, seven_day_averages, tick_label = averages_dates)
