@@ -25,6 +25,7 @@ def home():
         averages_dates.append(dates[i])
     averages_dates[1:49] = ['' for j in range(1,49)]
     index = np.arange(len(seven_day_averages)) + 0.3
+    plt.clf()
     plot = plt.bar(index, seven_day_averages, tick_label = averages_dates)
     plt.savefig(f"/static/output_graph{date.today()}.png")
     return render_template('home.html', imgname=f"output_graph{date.today()}.png")
